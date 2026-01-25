@@ -11,7 +11,7 @@ class Solution {
                 j--;
             }
             else{
-                return check(s,i+1,j) || check(s,i,j-1);
+                return check(s,i+1,j)|| check(s,i,j-1);
             }
         }
         return true;
