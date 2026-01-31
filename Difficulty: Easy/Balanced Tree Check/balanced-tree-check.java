@@ -1,23 +1,28 @@
-class Solution {
-    static boolean flag;
+/*
+class Node {
+    int data;
+    Node left, right;
 
-    public boolean isBalanced(Node root) {
-        if (root == null) return true;
-        flag = true;
-        levels(root);
-        return flag;
+    Node(int d)
+    {
+        data = d;
+        left = right = null;
     }
+}
+*/
 
-    private int levels(Node root) {
-        if (root == null) return 0;
+class Solution {
+    public boolean isBalanced(Node root) {
+        return dfs(root)!=-1;
+    }
+    private int dfs(Node root){
+        if(root==null)return 0;
 
-        int leftLevels = levels(root.left);
-        int rightLevels = levels(root.right);
-
-        if (Math.abs(leftLevels - rightLevels) > 1) {
-            flag = false;
-        }
-
-        return 1 + Math.max(leftLevels, rightLevels);
+        int lh=dfs(root.left);
+        if(lh==-1)return -1;
+        int rh=dfs(root.right);
+        if(rh==-1)return -1;
+        if(Math.abs(lh-rh)>1)return -1;
+        return 1+Math.max(lh,rh);
     }
 }
